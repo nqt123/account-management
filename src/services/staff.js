@@ -16,7 +16,11 @@ const getStaffByCredentials = async ({ email, password }) => {
     return staff;
 }
 
+const getAllStaff = async () => {
+    return Staff.find({});
+}
 module.exports = {
     createStaff,
-    getStaffByCredentials
+    getStaffByCredentials,
+    getAllStaff
 }

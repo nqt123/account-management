@@ -2,11 +2,13 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex bd-highlight">
-                <h1 class="p-2 w-100 bd-highlight">Products</h1>
+                <h1 class="p-2 w-100 bd-highlight">Categories</h1>
                 <div class="p-2 flex-shrink-1 bd-highlight">
-                    <button type="button" class="btn btn-primary btn-success">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        <span>Add New</span>
+                    <button class="btn btn-sm btn-outline-dark">
+                        <a href="categories/new">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <span>Add New</span>
+                        </a>
                     </button>
                 </div>
             </div>
@@ -19,10 +21,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <% for (let i = 0; i< categories.length; i++){ %>
                         <tr>
-                            <td>#1</td>
-                            <td><label class="badge badge-danger">Pending</label></td>
+                            <td>#<%=i%></td>
+                            <td><%=categories[i].name%></td>
                         </tr>
+                        <% } %>
                     </tbody>
                 </table>
             </div>

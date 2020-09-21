@@ -11,12 +11,18 @@ router.get('/login', (req, res) => {
     res.render('users/login');
 })
 
+router.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.render('users/login');
+})
+
 router.post('/login', async (req, res) => {
     try {
         const user = await userService.getUserByCredentials(req.body);
         if (!user) {
             res.render('users/login');
         }
+        req.session.user = user;
         return RenderWithLayout(res, 'index', { greeting: "Hello" });
     } catch (error) {
         res.send("Login Failed");

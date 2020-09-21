@@ -1,0 +1,99 @@
+<div class="page-content page-container" id="page-content">
+    <form method="POST" action="/products">
+        <div class="form-inline">
+            <div class="form-group mb-2">
+                <input type="text" readonly class="form-control-plaintext" id="productLabel" value="Product Info">
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <label class="form-check-label">
+                    <div class="form-group">
+                        <select class="form-control searchAble" name="info" id="">
+                            <option value="Account">Account</option>
+                            <option value="Refer Link">Refer Link</option>
+                        </select>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-inline">
+            <div class="form-group mb-2">
+                <input type="text" readonly class="form-control-plaintext" id="productLabel" value="Password">
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <input type="text" class="form-control" name="password" id="productPassword">
+            </div>
+        </div>
+
+        <div class="form-inline">
+            <div class="form-group mb-2">
+                <input type="text" readonly class="form-control-plaintext" id="productLabel" value="Product Categories">
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <label class="form-check-label">
+                    <div class="form-group">
+                        <select class="form-control searchAble" name="categories" id="" multiple>
+                            <% categories.forEach(category => { %>
+                                <option value="<%=category._id%>"><%=category.name%></option>
+                            <%})%>
+                        </select>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-inline">
+            <div class="form-group mb-2">
+                <input type="text" readonly class="form-control-plaintext" id="productLabel" value="Price">
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <input type="text" class="form-control" name="price" id="price">
+            </div>
+        </div>
+
+        <div class="form-inline">
+            <div class="form-group mb-2">
+                <input type="text" readonly class="form-control-plaintext" id="productLabel" value="User Ref.">
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <label class="form-check-label">
+                    <div class="form-group">
+                        <select class="form-control searchAble" name="ownerId" id="">
+                            <option disabled selected value> -- select an user -- </option>
+                            <% users.forEach(user => { %>
+                                <option value="<%=user._id%>"><%=user.email%></option>
+                            <%})%>
+                        </select>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-inline">
+            <div class="form-group mb-2">
+                <input type="text" readonly class="form-control-plaintext" id="productLabel" value="Staff Ref.">
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <label class="form-check-label">
+                    <div class="form-group">
+                        <select class="form-control searchAble" name="sellerId" id="">
+                            <option disabled selected value> -- select an staff -- </option>
+                            <% staffs.forEach(staff => { %>
+                                <option value="<%=staff._id%>"><%=staff.email%></option>
+                            <%})%>
+                        </select>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-inline">
+            <div class="form-group mb-2">
+                <label for="productLabel" class="sr-only">Product Label</label>
+                <input type="text" readonly class="form-control-plaintext" id="productLabel" value="">
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <button type="submit" class="btn btn-primary mb-2">Create Product</button>
+            </div>
+        </div>
+    </form>
+    <button type="button" onclick="history.back()" class="btn btn-danger mb-2">Go Back</button>
+</div>

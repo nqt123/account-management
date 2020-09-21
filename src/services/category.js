@@ -4,12 +4,11 @@ const getAllCategory = () => {
     return Category.find({});
 }
 
-const createCategory = ({ email, password }) => {
-    const newStaff = Staff.create({
-        email,
-        password
+const createCategory = ({ name }) => {
+    const newCategory = Category.create({
+        name
     });
-    return newStaff;
+    return newCategory;
 }
 
 const getCategoryByName = async ({ name }) => {

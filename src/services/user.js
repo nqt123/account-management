@@ -16,7 +16,11 @@ const getUserByCredentials = async ({ email, password }) => {
     return user;
 }
 
+const getAllUser = async () => {
+    return User.find({});
+}
 module.exports = {
     createUser,
-    getUserByCredentials
+    getUserByCredentials,
+    getAllUser
 }

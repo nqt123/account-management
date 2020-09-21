@@ -1,0 +1,1 @@
+$('.searchAble').SumoSelect({search: true, searchText: 'Search...'});
