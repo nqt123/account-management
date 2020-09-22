@@ -12,20 +12,27 @@
         <% products.forEach(product => { %>
             <div class="col-md-3">
                 <div class="card p-2">
-                    <div class="text-right"> <small><%=product.info%></small> </div>
                     <div class="text-center mt-2 p-3">
-                        <% if (product.info == "Account") { %>
-                            <img alt="image" src="/images/netflix.png" width="60" />
-                        <% } else { %>
-                            <img alt="image" src="/images/spotify.png" width="60" />
-                        <% } %>
-                        <p></p>
                         <% product.categories.forEach(category => { %>
-                            <span class="d-block font-weight-bold"><%=category.name%></span>
+                            <% if (category.name.toLowerCase().includes("account")) { %>
+                                <img alt="image" src="/images/netflix.png" width="60" />
+                            <% } else { %>
+                                <img alt="image" src="/images/spotify.png" width="60" />
+                            <% } %>
+                            <span class="d-block font-weight-bold mt-3"><%=category.name%></span>
                         <% }) %>
-                        <hr> <span>Google Inc</span>
-                        <div class="d-flex flex-row align-items-center justify-content-center"> <em class="fa fa-map-marker"></em> <small class="ml-1">FA 100, OH, USA</small> </div>
-                        <div class="d-flex justify-content-between mt-3"> <span>$ <%=product.price%></span> <button class="btn btn-sm btn-outline-dark">Details</button> </div>
+                        <p></p>
+                        <div><%=product.info%></div>
+                        <hr> <span>Owner: <%= product.ownerId ? product.ownerId.email : "" %></span>
+                        <div class="d-flex flex-row align-items-center justify-content-center">
+                            <small class="ml-1">
+                                Seller (Staff): <%= product.sellerId ? product.sellerId.email : "" %>
+                            </small>
+                        </div>
+                        <a href="/products/<%=product._id%>" class="d-flex justify-content-around mt-3"> 
+                            <span>$ <%=product.price%></span> 
+                            <button class="btn btn-sm btn-outline-dark">Details</button>
+                         </a>
                     </div>
                 </div>
             </div>

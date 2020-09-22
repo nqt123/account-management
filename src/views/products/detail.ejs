@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="/css/product.css">
+<div class="col-md-6 col-lg-3 mt-1 mx-auto">
+    <div class="part3 p-3 text-dark text-center py-3">
+        <h6 class="free mt-4"></h6>Product Information<span class=" amount mt-4 d-block"><%=product.info%></span>
+        <p></p>
+        <% product.categories.forEach(category => { %>
+            <% if (category.name.toLowerCase().includes("account")) { %>
+                <img alt="image" src="/images/netflix.png" width="60" />
+            <% } else { %>
+                <img alt="image" src="/images/spotify.png" width="60" />
+            <% } %>
+        <% }) %>
+        <p></p>
+        <% if(product.password) { %>
+            <span class="user d-block mt-2">
+                <div class="input-group mb-2">
+                    <input type="password" class="form-control passwordField" id="inlineFormInputGroup" value="<%=product.password%>">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text reveal">
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
+            </span>
+        <% } else {%>
+            <span class="user d-block mt-2">Use this Refer link to upgrade account</span>
+        <% } %>
+        <% product.categories.forEach(category => { %>
+            <span class="information d-block mt-4"><%=category.name%></span>
+        <% }) %>
+    </div>
+    <div class="p-3 text-dark text-center py-3">
+        <a id="" class="btn btn-primary" href="/products" role="button">Go Back</a>
+    </div>
+</div>
+
+<script>
+    const revealButton = document.querySelector('.reveal');
+    const passwordField = document.querySelector('.passwordField');
+    revealButton.addEventListener('click', () => {
+        const fieldType = passwordField.getAttribute('type');
+        if(fieldType == 'password') {
+            passwordField.setAttribute('type', 'text');
+        } else {
+            passwordField.setAttribute('type', 'password');
+        }
+    })
+</script>

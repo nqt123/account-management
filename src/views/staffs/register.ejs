@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 
 <body>
 
     <body>
-        <form method="POST" id="form_wrapper">
+        <form class="form" method="POST" id="form_wrapper">
             <div id="form_left">
                 <img src="/images/fingerprint.png" alt="computer icon">
             </div>
@@ -27,14 +27,15 @@
                 <div class="input_container">
                     <em class="fas fa-lock"></em>
                     <input placeholder="Password" type="password" name="password" id="field_password"
-                        class='input_field'>
+                        class='input_field password'>
                 </div>
                 <div class="input_container">
                     <em class="fas fa-lock"></em>
-                    <input placeholder="Confirm Password" type="password" name="confirmPassword" id="field_confirmPassword"
-                        class='input_field'>
+                    <input placeholder="Confirm Password" type="password" name="confirmPassword"
+                        id="field_confirmPassword" class='input_field confirmPassword'>
                 </div>
-                <input type="submit" value="Sign Up" id='input_submit' class='input_field'>
+                <p class="message" style="color: red; text-align: center;"></p>
+                <input type="submit" value="Sign Up" id='input_submit' class='input_field register'>
                 <span id='create_account'>
                     <a href="/staffs/login">Return To Sign In</a>
                 </span>
@@ -42,5 +43,22 @@
         </form>
     </body>
 </body>
+
+<script>
+    const form = document.querySelector('.form');
+    document.querySelector('.register').addEventListener('click', function (e) {
+        e.preventDefault();
+        console.log('Click');
+        const password = document.querySelector('.password');
+        const confirmPassword = document.querySelector('.confirmPassword');
+
+        if (password.value === confirmPassword.value) {
+            return form.submit();
+        }
+
+        const message = document.querySelector('.message');
+        message.textContent = "Password Not Match, Check Again!"
+    })
+</script>
 
 </html>

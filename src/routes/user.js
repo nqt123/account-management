@@ -1,5 +1,5 @@
 const express = require('express');
-const RenderWithLayout = require('../helper/render');
+const { RenderWithUserLayout, RenderWithLayout } = require('../helper/render');
 const router = express.Router();
 const userService = require('../services/user');
 
@@ -16,6 +16,14 @@ router.get('/logout', (req, res) => {
     res.render('users/login');
 })
 
+router.get('/', async (req, res) => {
+    try {
+        RenderWithLayout(res, 'users/index');
+    } catch (error) {
+        res.send(error);
+    }
+})
+
 router.post('/login', async (req, res) => {
     try {
         const user = await userService.getUserByCredentials(req.body);
@@ -23,7 +31,7 @@ router.post('/login', async (req, res) => {
             res.render('users/login');
         }
         req.session.user = user;
-        return RenderWithLayout(res, 'index', { greeting: "Hello" });
+        return res.redirect('/products/owner');
     } catch (error) {
         res.send("Login Failed");
     }
@@ -32,8 +40,9 @@ router.post('/login', async (req, res) => {
 router.post('/register', async (req, res) => {
     try {
         const { email, password } = req.body;
-        await userService.createUser({ email, password });
-        return res.render('login');
+        const newUser = await userService.createUser({ email, password });
+        req.session.user = newUser;
+        return RenderWithUserLayout(res, 'index');
     } catch (error) {
         return error;
     }

@@ -1,17 +1,15 @@
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
 
-const createUser = ({ email, password }) => {
-    const newUser = User.create({
-        email,
-        password
-    });
+const createUser = async ({ email, password }) => {
+    const newUser = User.create({ email, password });
     return newUser;
 }
 
 const getUserByCredentials = async ({ email, password }) => {
     const user = await User.findOne({ email });
-    if (password !== user.password) {
-        throw new Error("Staff not found");
+    if (!bcrypt.compareSync(password, user.password)) {
+        throw new Error("User not found");
     }
     return user;
 }

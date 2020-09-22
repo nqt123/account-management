@@ -7,10 +7,7 @@
             <div class="form-group mx-sm-3 mb-2">
                 <label class="form-check-label">
                     <div class="form-group">
-                        <select class="form-control searchAble" name="info" id="">
-                            <option value="Account">Account</option>
-                            <option value="Refer Link">Refer Link</option>
-                        </select>
+                        <input class="form-control searchAble" name="info" id=""> </input>
                     </div>
                 </label>
             </div>
@@ -31,7 +28,10 @@
             <div class="form-group mx-sm-3 mb-2">
                 <label class="form-check-label">
                     <div class="form-group">
-                        <select class="form-control searchAble" name="categories" id="" multiple>
+                        <select class="form-control searchAble" name="categories" id="">
+                            <% if(categories.length == 0) { %>
+                                <option disabled selected value><small class="text-warning">Create Categories First</small></option>
+                            <% } %>
                             <% categories.forEach(category => { %>
                                 <option value="<%=category._id%>"><%=category.name%></option>
                             <%})%>
@@ -57,7 +57,7 @@
                 <label class="form-check-label">
                     <div class="form-group">
                         <select class="form-control searchAble" name="ownerId" id="">
-                            <option disabled selected value> -- select an user -- </option>
+                            <option disabled selected value> <small>-- Select an user --</small> </option>
                             <% users.forEach(user => { %>
                                 <option value="<%=user._id%>"><%=user.email%></option>
                             <%})%>
@@ -75,7 +75,7 @@
                 <label class="form-check-label">
                     <div class="form-group">
                         <select class="form-control searchAble" name="sellerId" id="">
-                            <option disabled selected value> -- select an staff -- </option>
+                            <option disabled selected value> -- Select an staff -- </option>
                             <% staffs.forEach(staff => { %>
                                 <option value="<%=staff._id%>"><%=staff.email%></option>
                             <%})%>

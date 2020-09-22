@@ -1,7 +1,15 @@
 const Product = require('../models/product');
 
 const getAllProduct = () => {
-    return Product.find({}).populate('categories');
+    return Product.find({}).populate('categories').populate('ownerId');
+}
+
+const getProduct = (id) => {
+    return Product.findOne({ _id: id }).populate('categories').populate('ownerId');
+}
+
+const getUserProduct = async (user) => {
+    return Product.find({ ownerId: user._id }).populate('ownerId');
 }
 
 const createProduct = (productObj) => {
@@ -11,5 +19,7 @@ const createProduct = (productObj) => {
 
 module.exports = {
     getAllProduct,
-    createProduct
+    createProduct,
+    getUserProduct,
+    getProduct
 }

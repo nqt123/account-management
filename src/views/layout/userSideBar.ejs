@@ -44,23 +44,7 @@
             <ul class="list-unstyled components">
                 <p>Navigation Menu</p>
                 <li>
-                    <a href="/products">Products</a>
-                </li>
-
-                <li>
-                    <a href="/categories">Categories</a>
-                    <!-- <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul> -->
+                    <a href="/products/owner">Products</a>
                 </li>
                 <li>
             </ul>
@@ -106,7 +90,7 @@
                                 <a class="nav-link" href="#">Price</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/staffs/logout">Sign out</a>
+                                <a class="nav-link" href="/users/logout">Sign out</a>
                             </li>
                         </ul>
                     </div>
@@ -135,8 +119,9 @@
     <!-- jQuery Custom Scroller CDN -->
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-    
+
     <script src="/js/jquery.sumoselect.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#sidebar").mCustomScrollbar({
@@ -154,6 +139,11 @@
                 $('.collapse.in').toggleClass('in');
                 $('a[aria-expanded=true]').attr('aria-expanded', 'false');
             });
+
+            $(function () {
+            $("#sortable").sortable();
+            $("#sortable").disableSelection();
+        });
         });
     </script>
 

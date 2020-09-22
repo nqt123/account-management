@@ -1,16 +1,14 @@
 const Staff = require('../models/staff');
+const bcrypt = require('bcrypt');
 
-const createStaff = ({ email, password }) => {
-    const newStaff = Staff.create({
-        email,
-        password
-    });
+const createStaff = async ({ email, password }) => {
+    const newStaff = Staff.create({ email, password });
     return newStaff;
 }
 
 const getStaffByCredentials = async ({ email, password }) => {
     const staff = await Staff.findOne({ email });
-    if (password !== staff.password) {
+    if (!bcrypt.compareSync(password, staff.password)) {
         throw new Error("Staff not found");
     }
     return staff;

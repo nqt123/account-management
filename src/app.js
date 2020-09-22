@@ -33,6 +33,12 @@ app.use('/categories', categoryRouter);
 app.use('/products', productRouter);
 
 app.get('/', (req, res) => {
+    if (req.session.user) {
+        return res.redirect('/products/owner');
+    }
+    if (req.session.staff) {
+        return res.redirect('/products');
+    }
     res.render("users/login");
 })
 

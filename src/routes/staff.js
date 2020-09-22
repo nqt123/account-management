@@ -1,14 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const staffService = require('../services/staff');
-const RenderWithLayout = require('../helper/render');
+const { RenderWithLayout } = require('../helper/render');
 
 router.get('/register', (req, res) => {
     res.render('staffs/register');
 })
 
 router.get('/login', (req, res) => {
-    res.render('staffs/login');
+    if (!req.session.staff) {
+        return res.render('staffs/login');
+    }
+    return res.redirect('/products');
 })
 
 router.get('/logout', (req, res) => {
@@ -23,9 +26,9 @@ router.post('/login', async (req, res) => {
             res.render('staffs/login');
         }
         req.session.staff = staff;
-        return RenderWithLayout(res, 'index', { greeting: "Hello" });
+        return RenderWithLayout(res, 'index');
     } catch (error) {
-        return res.send("Login Failed");
+        return res.send(error,);
     }
 })
 
@@ -36,10 +39,11 @@ router.get('/get-session', (req, res) => {
 router.post('/register', async (req, res) => {
     try {
         const { email, password } = req.body;
-        await staffService.createStaff({ email, password });
-        return res.render('login');
+        const newStaff = await staffService.createStaff({ email, password });
+        req.session.staff = newStaff;
+        return RenderWithLayout(res, 'index');
     } catch (error) {
-        return error;
+        return res.send(error);
     }
 })
 

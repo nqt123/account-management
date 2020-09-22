@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const categoryService = require('../services/category');
 const Auth = require('../authentication/sessionAuth');
-const RenderWithLayout = require('../helper/render');
+const { RenderWithLayout } = require('../helper/render');
 
 router.get('/', async (req, res) => {
     try {

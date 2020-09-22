@@ -5,7 +5,7 @@ const userService = require('../services/user');
 const categoryService = require('../services/category');
 const staffService = require('../services/staff');
 const Auth = require('../authentication/sessionAuth');
-const RenderWithLayout = require('../helper/render');
+const { RenderWithLayout, RenderWithUserLayout } = require('../helper/render');
 
 router.get('/', async (req, res) => {
     try {
@@ -15,6 +15,17 @@ router.get('/', async (req, res) => {
         return res.send(error);
     }
 })
+
+router.get('/owner', async (req, res) => {
+    try {
+        const user = req.session.user;
+        const products = await productService.getUserProduct(user);
+        return RenderWithUserLayout(res, 'products/list', { products });
+    } catch (error) {
+        return res.send(error);
+    }
+})
+
 
 router.get('/new', async (req, res) => {
     try {
@@ -35,6 +46,16 @@ router.post('/', async (req, res) => {
         return res.redirect('products');
     } catch (error) {
         return error;
+    }
+})
+
+
+router.get('/:id', async (req, res) => {
+    try {
+        const product = await productService.getProduct(req.params.id);
+        return RenderWithLayout(res, 'products/detail', { product });
+    } catch (error) {
+        return res.send(error);
     }
 })
 module.exports = router;

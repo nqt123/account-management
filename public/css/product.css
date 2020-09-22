@@ -1,0 +1,25 @@
+.part3 {
+    background-color: rgb(255, 234, 206);
+    border-radius: 12px;
+    border-width: 1px;
+    border-color: black;
+}
+
+.free {
+    font-size: 15px;
+    font-weight: 700
+}
+
+.amount {
+    font-size: 28px;
+    font-weight: 700
+}
+
+.user {
+    font-size: 12px
+}
+
+.information {
+    font-size: 16px;
+    font-weight: 600
+}
