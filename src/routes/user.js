@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
         req.session.user = user;
         return res.redirect('/products/owner');
     } catch (error) {
-        res.send("Login Failed");
+        return res.render('404');
     }
 })
 
@@ -44,7 +44,7 @@ router.post('/register', async (req, res) => {
         req.session.user = newUser;
         return RenderWithUserLayout(res, 'index');
     } catch (error) {
-        res.send(error);
+        return res.render('404');
     }
 })
 

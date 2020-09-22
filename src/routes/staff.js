@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
         req.session.staff = staff;
         return RenderWithLayout(res, 'index');
     } catch (error) {
-        return res.send(error);
+        return res.render('404');
     }
 })
 
@@ -43,7 +43,7 @@ router.post('/register', async (req, res) => {
         req.session.staff = newStaff;
         return RenderWithLayout(res, 'index');
     } catch (error) {
-        return res.send(error);
+        return res.render('404');
     }
 })
 
