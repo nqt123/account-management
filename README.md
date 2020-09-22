@@ -5,3 +5,4 @@ How to run:
 
 #Sample .env 
 PORT=3000
+SESSION_SECRET="_!Account_Manag3met$"
