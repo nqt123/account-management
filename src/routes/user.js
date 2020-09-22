@@ -44,7 +44,7 @@ router.post('/register', async (req, res) => {
         req.session.user = newUser;
         return RenderWithUserLayout(res, 'index');
     } catch (error) {
-        return error;
+        res.send(error);
     }
 })
 

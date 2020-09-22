@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
         await productService.createProduct(req.body);
         return res.redirect('products');
     } catch (error) {
-        return error;
+        res.send(error);
     }
 })
 

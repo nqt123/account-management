@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
         req.session.staff = staff;
         return RenderWithLayout(res, 'index');
     } catch (error) {
-        return res.send(error,);
+        return res.send(error);
     }
 })
 
